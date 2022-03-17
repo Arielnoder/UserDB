@@ -1,0 +1,53 @@
+
+@model usersdb.Models.UsersModel
+@{
+    
+
+
+    List<UsersModel> users = TempData["users"] as List<UsersModel>;
+}
+
+<h1>Users</h1>
+
+
+<div class="container">
+    @if (users != null && users.Count >= 1)
+    {
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Username</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Password</th>
+
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in users)
+                {
+                    <tr>
+                        <th scope="row">@user.Id</th>
+
+                        <td>@user.UserName</td>
+                         <td>@user.Email</td>
+                        <td>@user.PassWord.GetHashCode()</td>
+                        <td>
+                            <form asp-action="RemoveUser" asp-controller="Home" method="post">
+                                <input type="hidden" asp-for="Id" value="@user.Id" />
+                                <button type="sumbit" class="btn btn-success">Remove</button>
+                            </form>
+                        </td>
+
+                    </tr>
+
+                }
+
+
+            </tbody>
+        </table>
+
+
+    }
+</div>
