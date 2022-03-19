@@ -62,22 +62,29 @@ public class HomeController : Controller
     }
 
     [HttpPost]
-    public IActionResult RegisterPost(UsersModel user)
+    public IActionResult RegisterPost(UsersModel user, UsersModel email)
     {
-
 
 
 
         using (var db = new UsersContext())
         {
 
-
             var checkuser = db.Users.Where(x => x.UserName == user.UserName).FirstOrDefault();
-            if (checkuser != null)
+            var checkemail = db.Users.Where(x => x.Email == user.Email).FirstOrDefault();    
+
+            if (checkuser != null || checkemail != null)
             {
 
+                    if(checkuser != null) {
                 ViewBag.Message = "Exsit";
                     return View("Register");
+                    } 
+                           if(checkemail != null) {
+                ViewBag.Message3 = "Exsit";
+                    return View("Register");
+                    } 
+                     return View("Register");
             }
             else
             {
@@ -109,6 +116,41 @@ public class HomeController : Controller
 
         return View();
     }
+
+    
+    public IActionResult Login() {
+                List<UsersModel> users = new List<UsersModel>();
+
+        using (var db = new UsersContext())
+        {
+            users = db.Users.ToList();
+        }
+
+        TempData["users"] = users;
+        return View();
+    }
+
+    [HttpGet] 
+      public IActionResult LoginGet(UsersModel user, UsersModel email ) {
+
+            
+
+        using (var db = new UsersContext())
+        {
+              var checkuser = db.Users.Where(x => x.UserName == user.UserName).FirstOrDefault();
+              var checkemail = db.Users.Where(x => x.Email == user.Email).FirstOrDefault();    
+
+              if(checkuser == null || checkemail == null) {
+                  ViewBag.Message2 = "DoesNotExsit";
+                  return View("Login");
+              }
+              
+        }
+
+   
+        return RedirectToAction("Index");
+    }
+
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()

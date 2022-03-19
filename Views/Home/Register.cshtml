@@ -1,35 +1,40 @@
-
 @model usersdb.Models.UsersModel
 @{
-   List<UsersModel> users = TempData["users"] as List<UsersModel>;
-    
+    List<UsersModel> users = TempData["users"] as List<UsersModel>;
+
 }
 
 <h1>Register</h1>
 
 
-<form action="/Home/RegisterPost" method="post" onsubmit="">
+<form action="/Home/RegisterPost" method="post">
     <div class="form-group">
         <label for="UserName">User Name</label>
-        <input type="text" class="form-control" id="UserName" placeholder="Enter User Name" asp-for="UserName" minlength="2" maxlength="12" required >
-@if ( ViewBag.Message != null && ViewBag.Message == "Exsit") {
-    <span style="color: red;">Username already exist</span>
-}
+        <input type="text" class="form-control" id="UserName" placeholder="Enter User Name" asp-for="UserName"
+            minlength="2" maxlength="12" required>
+        @if (ViewBag.Message != null && ViewBag.Message == "Exsit")
+        {
+            <span style="color: red;">Username already exists</span>
+        }
     </div>
 
-     <div class="form-group">
+    <div class="form-group">
         <label for="Email">Email</label>
         <input type="email" class="form-control" id="Email" placeholder="Email" asp-for="Email" required>
+        @if (ViewBag.Message3 != null && ViewBag.Message3 == "Exsit")
+        {
+            <span style="color: red;">Email already used</span>
+        }
     </div>
 
 
     <div class="form-group">
         <label for="Password">Password</label>
-        <input type="Password" class="form-control" id="Password" placeholder="Password" asp-for="PassWord" minlength="8" maxlength="16" required>
+        <input type="Password" class="form-control" id="Password" placeholder="Password" asp-for="PassWord"
+            minlength="8" maxlength="16" required>
     </div>
 
-    
 
-    <button type="submit" class="btn btn-primary" >Register</button>
+
+    <button type="submit" class="btn btn-primary">Register</button>
 </form>
-
