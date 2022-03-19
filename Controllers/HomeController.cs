@@ -23,9 +23,10 @@ public class HomeController : Controller
         return View();
     }
 
-    public IActionResult Register() {
+    public IActionResult Register()
+    {
 
-          List<UsersModel> users = new List<UsersModel>();
+        List<UsersModel> users = new List<UsersModel>();
 
         using (var db = new UsersContext())
         {
@@ -36,7 +37,7 @@ public class HomeController : Controller
         return View();
     }
 
-     [HttpPost]
+    [HttpPost]
     public IActionResult RemoveUser()
     {
 
@@ -50,7 +51,7 @@ public class HomeController : Controller
             {
 
                 db.Remove(user);
-                
+
                 db.SaveChanges();
 
             }
@@ -61,33 +62,50 @@ public class HomeController : Controller
     }
 
     [HttpPost]
-     public IActionResult RegisterPost(UsersModel user) {
+    public IActionResult RegisterPost(UsersModel user)
+    {
 
+
+
+
+        using (var db = new UsersContext())
+        {
+
+
+            var checkuser = db.Users.Where(x => x.UserName == user.UserName).FirstOrDefault();
+            if (checkuser != null)
+            {
+
+                ViewBag.Message = "Exsit";
+                    return View("Register");
+            }
+            else
+            {
+
+
+                db.Add(user);
+                db.SaveChanges();
+                return RedirectToAction("Register");
+
+            }
             
 
-            
-        using (var db = new UsersContext()) {
-        
-            
-            db.Add(user);
-            db.SaveChanges();
-
-                
-                
         }
 
-    return RedirectToAction("Register");
+
     }
 
-    public IActionResult Users() {
+    public IActionResult Users()
+    {
 
-         List<UsersModel> users = new List<UsersModel>();
-            
-    using (var db = new UsersContext()) {
-        users = db.Users.ToList();
-    }
+        List<UsersModel> users = new List<UsersModel>();
 
-    TempData["users"] = users;
+        using (var db = new UsersContext())
+        {
+            users = db.Users.ToList();
+        }
+
+        TempData["users"] = users;
 
         return View();
     }

@@ -1170,11 +1170,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/ariel/usersdb/usersdb.csproj",
+      "projectUniqueName": "/home/ariel/userDB/usersdb.csproj",
       "projectName": "usersdb",
-      "projectPath": "/home/ariel/usersdb/usersdb.csproj",
+      "projectPath": "/home/ariel/userDB/usersdb.csproj",
       "packagesPath": "/home/ariel/.nuget/packages/",
-      "outputPath": "/home/ariel/usersdb/obj/",
+      "outputPath": "/home/ariel/userDB/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/ariel/.nuget/NuGet/NuGet.Config"
@@ -1230,7 +1230,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/lib64/dotnet/sdk/6.0.102/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.200/RuntimeIdentifierGraph.json"
       }
     }
   }

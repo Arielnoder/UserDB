@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "eLcFrXJLpq+Tp4ZxViokqkG0HqD2B66xxnRoQIMW3WUxpm+9mIUdqTFmLCtumSk+rviAy9Xs1NQ2jNe6ugqxWw==",
+  "dgSpecHash": "LQoUr8l8wRbDxmbB8MGbgt/Rw4Lu+z4JlCdRyXuYVtuUrhFKrTkE0AengwTiP/2Pd6i0yOFAdCo+RP8ikeJMeQ==",
   "success": true,
-  "projectFilePath": "/home/ariel/usersdb/usersdb.csproj",
+  "projectFilePath": "/home/ariel/userDB/usersdb.csproj",
   "expectedPackageFiles": [
     "/home/ariel/.nuget/packages/humanizer.core/2.8.26/humanizer.core.2.8.26.nupkg.sha512",
     "/home/ariel/.nuget/packages/microsoft.data.sqlite.core/6.0.3/microsoft.data.sqlite.core.6.0.3.nupkg.sha512",
