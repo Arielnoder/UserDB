@@ -62,7 +62,7 @@ public class HomeController : Controller
     }
 
     [HttpPost]
-    public IActionResult RegisterPost(UsersModel user, UsersModel email)
+    public IActionResult RegisterPost(UsersModel user)
     {
 
 
@@ -81,7 +81,7 @@ public class HomeController : Controller
                     return View("Register");
                     } 
                            if(checkemail != null) {
-                ViewBag.Message3 = "Exsit";
+                ViewBag.Message2 = "Exsit";
                     return View("Register");
                     } 
                      return View("Register");
@@ -131,25 +131,33 @@ public class HomeController : Controller
     }
 
     [HttpGet] 
-      public IActionResult LoginGet(UsersModel user, UsersModel email ) {
+      public IActionResult LoginGet( UsersModel usersss) {
+
+
 
             
 
         using (var db = new UsersContext())
         {
-              var checkuser = db.Users.Where(x => x.UserName == user.UserName).FirstOrDefault();
-              var checkemail = db.Users.Where(x => x.Email == user.Email).FirstOrDefault();    
+            // var user = db.Users.Where(u => u.Id == 1).FirstOrDefault();
+            var user = db.Users.Where(u => u.UserName == usersss.UserName && u.PassWord == usersss.PassWord && u.Email == usersss.Email).FirstOrDefault();
+            if (user != null)
+            {
 
-              if(checkuser == null || checkemail == null) {
-                  ViewBag.Message2 = "DoesNotExsit";
-                  return View("Login");
-              }
-              
-        }
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                ViewBag.Message3 = "DoesNotExsit";
+                return View("Login");
+            }    
+           
+
 
    
-        return RedirectToAction("Index");
+        
     }
+      }
 
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

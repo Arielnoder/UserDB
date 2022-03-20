@@ -21,7 +21,7 @@
     <div class="form-group">
         <label for="Email">Email</label>
         <input type="email" class="form-control" id="Email" placeholder="Email" asp-for="Email" required>
-        @if (ViewBag.Message3 != null && ViewBag.Message3 == "Exsit")
+        @if (ViewBag.Message2 != null && ViewBag.Message2 == "Exsit")
         {
             <span style="color: red;">Email already used</span>
         }
